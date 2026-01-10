@@ -276,6 +276,138 @@ function getSampleNews() {
             company: 'amorepacific',
             region: 'korea',
             category: 'rd'
+        },
+        {
+            id: '13',
+            title: 'MISSHA by Able C&C Launches Vegan Cushion Line',
+            description: 'Korean beauty brand unveils new vegan-certified cushion foundation with improved coverage.',
+            source: 'K-Beauty Daily',
+            url: '#',
+            publishedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'ablecnc',
+            region: 'korea',
+            category: 'product'
+        },
+        {
+            id: '14',
+            title: 'Kolmar Korea Signs Major Contract with European Brand',
+            description: 'Leading ODM manufacturer secures multi-million dollar deal for innovative formulation.',
+            source: 'Manufacturing News Asia',
+            url: '#',
+            publishedAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'kolmar',
+            region: 'korea',
+            category: 'ma'
+        },
+        {
+            id: '15',
+            title: 'Tony Moly Opens Flagship Store in New York',
+            description: 'Popular K-beauty brand expands US presence with innovative experiential retail concept.',
+            source: 'Retail Beauty Report',
+            url: '#',
+            publishedAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'tonymoly',
+            region: 'korea',
+            category: 'financial'
+        },
+        {
+            id: '16',
+            title: 'Nature Republic Commits to 100% Recycled Packaging',
+            description: 'Natural cosmetics brand announces ambitious environmental initiative for all products by 2025.',
+            source: 'Green Beauty Times',
+            url: '#',
+            publishedAt: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'naturerepublic',
+            region: 'korea',
+            category: 'esg'
+        },
+        {
+            id: '17',
+            title: 'CLIO Launches AI-Powered Lipstick Matching App',
+            description: 'Korean color cosmetics leader introduces innovative virtual shade finder technology.',
+            source: 'Beauty Tech Innovation',
+            url: '#',
+            publishedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'clio',
+            region: 'korea',
+            category: 'rd'
+        },
+        {
+            id: '18',
+            title: 'Kao Corporation Reports Record Skincare Sales in Asia',
+            description: 'Japanese consumer goods giant sees 20% growth in premium skincare segment.',
+            source: 'Asian Business News',
+            url: '#',
+            publishedAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'kao',
+            region: 'japan',
+            category: 'financial'
+        },
+        {
+            id: '19',
+            title: 'FANCL Introduces Advanced Supplement-Infused Skincare',
+            description: 'Additive-free cosmetics pioneer combines oral and topical beauty solutions.',
+            source: 'Health & Beauty Journal',
+            url: '#',
+            publishedAt: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'fancl',
+            region: 'japan',
+            category: 'product'
+        },
+        {
+            id: '20',
+            title: 'DHC Expands Direct-to-Consumer Platform Globally',
+            description: 'Mail-order beauty leader enhances digital commerce capabilities across markets.',
+            source: 'E-Commerce Beauty News',
+            url: '#',
+            publishedAt: new Date(Date.now() - 17 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'dhc',
+            region: 'japan',
+            category: 'financial'
+        },
+        {
+            id: '21',
+            title: 'Kanebo Unveils Luxury Anti-Aging Collection',
+            description: 'Premium Japanese brand launches high-performance skincare with advanced peptide technology.',
+            source: 'Luxury Beauty Review',
+            url: '#',
+            publishedAt: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'kanebo',
+            region: 'japan',
+            category: 'product'
+        },
+        {
+            id: '22',
+            title: "Mandom's Gatsby Brand Dominates Asian Men's Grooming",
+            description: 'Leading men\'s cosmetics company reports strong growth across Southeast Asian markets.',
+            source: 'Men\'s Beauty Trends',
+            url: '#',
+            publishedAt: new Date(Date.now() - 19 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'mandom',
+            region: 'japan',
+            category: 'financial'
+        },
+        {
+            id: '23',
+            title: 'Noevir Holdings Invests in Biotechnology Research',
+            description: 'Luxury cosmetics company allocates ¥5 billion for next-generation ingredient development.',
+            source: 'Biotech Beauty News',
+            url: '#',
+            publishedAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'noevir',
+            region: 'japan',
+            category: 'rd'
+        },
+        {
+            id: '24',
+            title: 'Milbon Professional Hair Care Expands to European Salons',
+            description: 'Japanese hair care specialist announces partnership with leading European salon networks.',
+            source: 'Professional Beauty Magazine',
+            url: '#',
+            publishedAt: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'milbon',
+            region: 'japan',
+            category: 'ma'
         }
     ];
 }
