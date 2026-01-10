@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Global Cosmetics Industry Dashboard - Track news, stock prices, and AI research for major cosmetics companies">
+    <title>Global Cosmetics Industry Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-flask"></i>
+                    <h1>Global Cosmetics Dashboard</h1>
+                </div>
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="news">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Latest News</span>
+                </button>
+                <button class="tab-btn" data-tab="stocks">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Stock Prices</span>
+                </button>
+                <button class="tab-btn" data-tab="papers">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>AI Research</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- News Section -->
+            <section id="newsSection" class="content-section active">
+                <div class="section-header">
+                    <h2>Latest Industry News</h2>
+                    <div class="controls">
+                        <div class="region-tabs">
+                            <button class="region-btn active" data-region="all">All Regions</button>
+                            <button class="region-btn" data-region="korea">Korea</button>
+                            <button class="region-btn" data-region="japan">Japan</button>
+                            <button class="region-btn" data-region="china">China</button>
+                            <button class="region-btn" data-region="europe">Europe</button>
+                        </div>
+                        <select id="companyFilter" class="select-dropdown">
+                            <option value="all">All Companies</option>
+                        </select>
+                        <select id="categoryFilter" class="select-dropdown">
+                            <option value="all">All Categories</option>
+                            <option value="product">New Products</option>
+                            <option value="financial">Financial Results</option>
+                            <option value="ma">M&A</option>
+                            <option value="rd">R&D</option>
+                            <option value="esg">ESG</option>
+                        </select>
+                        <button id="refreshNews" class="btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <div id="newsLoading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Loading news...</p>
+                </div>
+
+                <div id="newsError" class="error-message hidden"></div>
+
+                <div id="newsGrid" class="news-grid">
+                    <!-- News cards will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- Stocks Section -->
+            <section id="stocksSection" class="content-section">
+                <div class="section-header">
+                    <h2>Stock Price Charts</h2>
+                    <div class="controls">
+                        <select id="stockCompany" class="select-dropdown">
+                            <option value="">Select Company</option>
+                        </select>
+                        <div class="period-buttons">
+                            <button class="period-btn" data-period="1W">1W</button>
+                            <button class="period-btn" data-period="1M">1M</button>
+                            <button class="period-btn active" data-period="3M">3M</button>
+                            <button class="period-btn" data-period="6M">6M</button>
+                            <button class="period-btn" data-period="1Y">1Y</button>
+                            <button class="period-btn" data-period="YTD">YTD</button>
+                        </div>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="compareMode">
+                            Compare Mode (max 4)
+                        </label>
+                    </div>
+                </div>
+
+                <div id="stockInfo" class="stock-info hidden">
+                    <div class="stock-card">
+                        <div class="stock-label">Current Price</div>
+                        <div id="currentPrice" class="stock-value">-</div>
+                    </div>
+                    <div class="stock-card">
+                        <div class="stock-label">Change</div>
+                        <div id="priceChange" class="stock-value">-</div>
+                    </div>
+                    <div class="stock-card">
+                        <div class="stock-label">Volume</div>
+                        <div id="volume" class="stock-value">-</div>
+                    </div>
+                    <div class="stock-card">
+                        <div class="stock-label">52W High</div>
+                        <div id="high52w" class="stock-value">-</div>
+                    </div>
+                    <div class="stock-card">
+                        <div class="stock-label">52W Low</div>
+                        <div id="low52w" class="stock-value">-</div>
+                    </div>
+                </div>
+
+                <div id="compareSelect" class="compare-select hidden">
+                    <p>Select up to 4 companies to compare:</p>
+                    <div id="compareCheckboxes" class="compare-checkboxes"></div>
+                    <button id="loadCompare" class="btn-primary">Load Comparison</button>
+                </div>
+
+                <div id="stockLoading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Loading stock data...</p>
+                </div>
+
+                <div id="stockError" class="error-message hidden"></div>
+
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Papers Section -->
+            <section id="papersSection" class="content-section">
+                <div class="section-header">
+                    <h2>AI & Cosmetics Research Papers</h2>
+                    <div class="controls">
+                        <input type="text" id="paperSearch" class="search-input" placeholder="Search papers...">
+                        <select id="yearFilter" class="select-dropdown">
+                            <option value="all">All Years</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                        </select>
+                        <button id="refreshPapers" class="btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <div id="papersLoading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Loading research papers...</p>
+                </div>
+
+                <div id="papersError" class="error-message hidden"></div>
+
+                <div id="papersGrid" class="papers-grid">
+                    <!-- Paper cards will be dynamically inserted here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Global Cosmetics Dashboard. Data sources: NewsAPI, Alpha Vantage, arXiv</p>
+            <p class="disclaimer">This dashboard is for informational purposes only. Please verify all data independently.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
