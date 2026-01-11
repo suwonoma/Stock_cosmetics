@@ -94,8 +94,8 @@ async function loadPapers() {
 
         displayPapers(papers);
     } catch (error) {
-        console.error('Error loading papers:', error);
-        showError('papersError', 'Failed to load research papers. Showing sample data instead.');
+        console.error('연구 논문 로딩 오류:', error);
+        showError('papersError', '연구 논문을 불러오는데 실패했습니다. 샘플 데이터를 표시합니다.');
 
         // Load sample papers as fallback
         allPapers = getSamplePapers();
@@ -361,7 +361,7 @@ function displayPapers(papers) {
     const grid = document.getElementById('papersGrid');
 
     if (papers.length === 0) {
-        grid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; padding: 3rem;">No research papers found matching your criteria.</div>';
+        grid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; padding: 3rem;">검색 조건과 일치하는 연구 논문을 찾을 수 없습니다.</div>';
         return;
     }
 

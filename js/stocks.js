@@ -104,7 +104,7 @@ function populateCompanyDropdown() {
             if (e.target.checked) {
                 if (selectedCompanies.length >= 4) {
                     e.target.checked = false;
-                    alert('Maximum 4 companies can be compared');
+                    alert('최대 4개 회사만 비교할 수 있습니다');
                     return;
                 }
                 selectedCompanies.push(company.id);
@@ -147,7 +147,7 @@ async function loadStockData(companyId) {
 
     try {
         const company = companiesData.companies.find(c => c.id === companyId);
-        if (!company) throw new Error('Company not found');
+        if (!company) throw new Error('회사를 찾을 수 없습니다');
 
         // Check cache
         const cacheKey = `stock_${companyId}_${currentPeriod}`;
@@ -164,8 +164,8 @@ async function loadStockData(companyId) {
         displayStockInfo(stockData, company);
         displayStockChart([{ company, data: stockData }]);
     } catch (error) {
-        console.error('Error loading stock data:', error);
-        showError('stockError', 'Failed to load stock data. Showing sample data instead.');
+        console.error('주가 데이터 로딩 오류:', error);
+        showError('stockError', '주가 데이터를 불러오는데 실패했습니다. 샘플 데이터를 표시합니다.');
 
         // Load sample data as fallback
         const company = companiesData.companies.find(c => c.id === companyId);
@@ -207,8 +207,8 @@ async function loadCompareData() {
 
         displayStockChart(datasets);
     } catch (error) {
-        console.error('Error loading comparison data:', error);
-        showError('stockError', 'Failed to load comparison data. Showing sample data instead.');
+        console.error('비교 데이터 로딩 오류:', error);
+        showError('stockError', '비교 데이터를 불러오는데 실패했습니다. 샘플 데이터를 표시합니다.');
 
         // Load sample data for comparison
         const datasets = selectedCompanies.map(id => {

@@ -1,69 +1,69 @@
 // ===========================
-// Main Application
+// 메인 애플리케이션
 // ===========================
 
 import { initNews } from './news.js';
 import { initStocks } from './stocks.js';
 import { initPapers } from './papers.js';
 
-// Global state
+// 전역 상태
 let companiesData = null;
 
 // ===========================
-// Initialization
+// 초기화
 // ===========================
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Load companies data
+        // 회사 데이터 로드
         await loadCompaniesData();
 
-        // Initialize theme
+        // 테마 초기화
         initTheme();
 
-        // Initialize tab navigation
+        // 탭 네비게이션 초기화
         initTabs();
 
-        // Initialize all modules
+        // 모든 모듈 초기화
         initNews(companiesData);
         initStocks(companiesData);
         initPapers(companiesData);
 
-        console.log('Application initialized successfully');
+        console.log('애플리케이션이 성공적으로 초기화되었습니다');
     } catch (error) {
-        console.error('Error initializing application:', error);
-        showGlobalError('Failed to initialize application. Please refresh the page.');
+        console.error('애플리케이션 초기화 오류:', error);
+        showGlobalError('애플리케이션 초기화에 실패했습니다. 페이지를 새로고침 해주세요.');
     }
 });
 
 // ===========================
-// Load Companies Data
+// 회사 데이터 로드
 // ===========================
 async function loadCompaniesData() {
     try {
         const response = await fetch('data/companies.json');
         if (!response.ok) {
-            throw new Error('Failed to load companies data');
+            throw new Error('회사 데이터 로드 실패');
         }
         companiesData = await response.json();
         return companiesData;
     } catch (error) {
-        console.error('Error loading companies data:', error);
+        console.error('회사 데이터 로딩 오류:', error);
         throw error;
     }
 }
 
 // ===========================
-// Theme Toggle
+// 테마 전환
 // ===========================
 function initTheme() {
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('theme') || 'light';
 
-    // Apply saved theme
+    // 저장된 테마 적용
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 
-    // Theme toggle event
+    // 테마 전환 이벤트
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -86,7 +86,7 @@ function updateThemeIcon(theme) {
 }
 
 // ===========================
-// Tab Navigation
+// 탭 네비게이션
 // ===========================
 function initTabs() {
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -96,11 +96,11 @@ function initTabs() {
         button.addEventListener('click', () => {
             const targetTab = button.getAttribute('data-tab');
 
-            // Update active tab button
+            // 활성 탭 버튼 업데이트
             tabButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // Update active section
+            // 활성 섹션 업데이트
             sections.forEach(section => {
                 if (section.id === `${targetTab}Section`) {
                     section.classList.add('active');
@@ -109,12 +109,12 @@ function initTabs() {
                 }
             });
 
-            // Save active tab
+            // 활성 탭 저장
             localStorage.setItem('activeTab', targetTab);
         });
     });
 
-    // Restore last active tab
+    // 마지막 활성 탭 복원
     const savedTab = localStorage.getItem('activeTab');
     if (savedTab) {
         const savedButton = document.querySelector(`[data-tab="${savedTab}"]`);
@@ -125,10 +125,10 @@ function initTabs() {
 }
 
 // ===========================
-// Utility Functions
+// 유틸리티 함수
 // ===========================
 
-// Show global error message
+// 전역 오류 메시지 표시
 function showGlobalError(message) {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
@@ -136,7 +136,7 @@ function showGlobalError(message) {
     document.body.insertBefore(errorDiv, document.body.firstChild);
 }
 
-// Format date
+// 날짜 포맷
 export function formatDate(dateString) {
     const date = new Date(dateString);
     const now = new Date();
@@ -144,41 +144,41 @@ export function formatDate(dateString) {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
-        return 'Today';
+        return '오늘';
     } else if (diffDays === 1) {
-        return 'Yesterday';
+        return '어제';
     } else if (diffDays < 7) {
-        return `${diffDays} days ago`;
+        return `${diffDays}일 전`;
     } else {
-        return date.toLocaleDateString('en-US', {
+        return date.toLocaleDateString('ko-KR', {
             year: 'numeric',
-            month: 'short',
+            month: 'long',
             day: 'numeric'
         });
     }
 }
 
-// Format number with commas
+// 숫자에 콤마 추가
 export function formatNumber(num) {
     if (num === null || num === undefined) return '-';
-    return num.toLocaleString();
+    return num.toLocaleString('ko-KR');
 }
 
-// Format currency
-export function formatCurrency(amount, currency = 'USD') {
+// 통화 포맷
+export function formatCurrency(amount, currency = 'JPY') {
     if (amount === null || amount === undefined) return '-';
 
     const formatOptions = {
         style: 'currency',
         currency: currency,
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
     };
 
-    return new Intl.NumberFormat('en-US', formatOptions).format(amount);
+    return new Intl.NumberFormat('ko-KR', formatOptions).format(amount);
 }
 
-// Truncate text
+// 텍스트 자르기
 export function truncateText(text, maxLength) {
     if (!text) return '';
     if (text.length <= maxLength) return text;
@@ -186,10 +186,10 @@ export function truncateText(text, maxLength) {
 }
 
 // ===========================
-// Cache Management
+// 캐시 관리
 // ===========================
 
-// Set cache with expiry
+// 만료 시간이 있는 캐시 저장
 export function setCacheWithExpiry(key, value, ttlMinutes) {
     const now = new Date();
     const item = {
@@ -199,7 +199,7 @@ export function setCacheWithExpiry(key, value, ttlMinutes) {
     localStorage.setItem(key, JSON.stringify(item));
 }
 
-// Get cache with expiry check
+// 만료 시간 확인하여 캐시 가져오기
 export function getCacheWithExpiry(key) {
     const itemStr = localStorage.getItem(key);
     if (!itemStr) {
@@ -217,27 +217,27 @@ export function getCacheWithExpiry(key) {
 
         return item.value;
     } catch (error) {
-        console.error('Error parsing cache:', error);
+        console.error('캐시 파싱 오류:', error);
         localStorage.removeItem(key);
         return null;
     }
 }
 
-// Clear old cache
+// 오래된 캐시 정리
 export function clearOldCache(keyPrefix) {
     const keys = Object.keys(localStorage);
     keys.forEach(key => {
         if (key.startsWith(keyPrefix)) {
-            getCacheWithExpiry(key); // This will remove expired items
+            getCacheWithExpiry(key); // 만료된 항목 제거
         }
     });
 }
 
 // ===========================
-// API Helper Functions
+// API 헬퍼 함수
 // ===========================
 
-// Debounce function
+// 디바운스 함수
 export function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -250,7 +250,7 @@ export function debounce(func, wait) {
     };
 }
 
-// Fetch with timeout
+// 타임아웃이 있는 fetch
 export async function fetchWithTimeout(url, options = {}, timeout = 10000) {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
@@ -268,7 +268,7 @@ export async function fetchWithTimeout(url, options = {}, timeout = 10000) {
     }
 }
 
-// Show loading state
+// 로딩 상태 표시
 export function showLoading(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
@@ -276,7 +276,7 @@ export function showLoading(elementId) {
     }
 }
 
-// Hide loading state
+// 로딩 상태 숨기기
 export function hideLoading(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
@@ -284,7 +284,7 @@ export function hideLoading(elementId) {
     }
 }
 
-// Show error
+// 오류 표시
 export function showError(elementId, message) {
     const element = document.getElementById(elementId);
     if (element) {
@@ -293,7 +293,7 @@ export function showError(elementId, message) {
     }
 }
 
-// Hide error
+// 오류 숨기기
 export function hideError(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
@@ -301,7 +301,7 @@ export function hideError(elementId) {
     }
 }
 
-// Export companies data getter
+// 회사 데이터 가져오기
 export function getCompaniesData() {
     return companiesData;
 }
