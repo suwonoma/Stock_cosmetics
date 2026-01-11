@@ -1,184 +1,64 @@
 {
   "companies": [
     {
-      "id": "amorepacific",
-      "name": "AMOREPACIFIC",
-      "nameLocal": "아모레퍼시픽",
-      "region": "korea",
-      "ticker": "090430.KS",
-      "exchange": "KRX",
-      "currency": "KRW",
-      "website": "https://www.apgroup.com",
-      "description": "Korea's leading cosmetics company known for brands like Sulwhasoo, Laneige, and Innisfree",
-      "keywords": ["amorepacific", "sulwhasoo", "laneige", "innisfree", "cosmetics korea"]
-    },
-    {
-      "id": "lghh",
-      "name": "LG H&H",
-      "nameLocal": "LG생활건강",
-      "region": "korea",
-      "ticker": "051900.KS",
-      "exchange": "KRX",
-      "currency": "KRW",
-      "website": "https://www.lghnh.com",
-      "description": "Major Korean household & health company with cosmetics brands like The Face Shop and OHUI",
-      "keywords": ["lg household health", "the face shop", "ohui", "cosmetics korea"]
-    },
-    {
-      "id": "cosmax",
-      "name": "COSMAX",
-      "nameLocal": "코스맥스",
-      "region": "korea",
-      "ticker": "192820.KS",
-      "exchange": "KRX",
-      "currency": "KRW",
-      "website": "https://www.cosmax.com",
-      "description": "Leading ODM cosmetics manufacturer serving global brands",
-      "keywords": ["cosmax", "odm", "cosmetics manufacturer", "korea"]
-    },
-    {
-      "id": "ablecnc",
-      "name": "Able C&C",
-      "nameLocal": "에이블씨엔씨",
-      "region": "korea",
-      "ticker": "078520.KS",
-      "exchange": "KRX",
-      "currency": "KRW",
-      "website": "https://www.ablecnc.com",
-      "description": "Korean cosmetics company with popular brands MISSHA and A'PIEU",
-      "keywords": ["able cnc", "missha", "apieu", "korean cosmetics", "kbeauty"]
-    },
-    {
-      "id": "kolmar",
-      "name": "Kolmar Korea",
-      "nameLocal": "한국콜마",
-      "region": "korea",
-      "ticker": "161890.KS",
-      "exchange": "KRX",
-      "currency": "KRW",
-      "website": "https://www.kolmar.co.kr",
-      "description": "Leading cosmetics ODM/OEM manufacturer in Korea",
-      "keywords": ["kolmar", "odm", "oem", "cosmetics manufacturing", "korea"]
-    },
-    {
-      "id": "cosmed",
-      "name": "Cosmed Korea",
-      "nameLocal": "코스메카코리아",
-      "region": "korea",
-      "ticker": "241710.KQ",
-      "exchange": "KOSDAQ",
-      "currency": "KRW",
-      "website": "https://www.cosmed.co.kr",
-      "description": "Cosmetics manufacturing and R&D company",
-      "keywords": ["cosmed", "cosmetics manufacturing", "korea", "oem"]
-    },
-    {
-      "id": "hankookcos",
-      "name": "Hankook Cosmetics",
-      "nameLocal": "한국화장품",
-      "region": "korea",
-      "ticker": "002790.KS",
-      "exchange": "KRX",
-      "currency": "KRW",
-      "website": "https://www.hankookcosmetics.com",
-      "description": "Established Korean cosmetics manufacturer and distributor",
-      "keywords": ["hankook cosmetics", "korean cosmetics", "manufacturing"]
-    },
-    {
-      "id": "tonymoly",
-      "name": "Tony Moly",
-      "nameLocal": "토니모리",
-      "region": "korea",
-      "ticker": "N/A",
-      "exchange": "Private",
-      "currency": "KRW",
-      "website": "https://www.tonymoly.com",
-      "description": "Popular K-beauty brand known for innovative packaging and affordable products",
-      "keywords": ["tony moly", "tonymoly", "kbeauty", "korean cosmetics", "skincare"]
-    },
-    {
-      "id": "naturerepublic",
-      "name": "Nature Republic",
-      "nameLocal": "네이처리퍼블릭",
-      "region": "korea",
-      "ticker": "N/A",
-      "exchange": "Private",
-      "currency": "KRW",
-      "website": "https://www.naturerepublic.com",
-      "description": "Natural cosmetics brand focusing on eco-friendly beauty products",
-      "keywords": ["nature republic", "natural cosmetics", "kbeauty", "aloe vera", "korea"]
-    },
-    {
-      "id": "clio",
-      "name": "CLIO",
-      "nameLocal": "클리오",
-      "region": "korea",
-      "ticker": "237880.KQ",
-      "exchange": "KOSDAQ",
-      "currency": "KRW",
-      "website": "https://www.clio-cosmetics.com",
-      "description": "Leading Korean color cosmetics brand",
-      "keywords": ["clio", "makeup", "color cosmetics", "kbeauty", "korea"]
-    },
-    {
       "id": "shiseido",
-      "name": "Shiseido",
+      "name": "시세이도",
       "nameLocal": "資生堂",
       "region": "japan",
       "ticker": "4911.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.shiseido.com",
-      "description": "Japan's oldest and largest cosmetics company with global presence",
-      "keywords": ["shiseido", "japanese cosmetics", "beauty", "skincare"]
+      "description": "일본에서 가장 오래되고 큰 화장품 회사로 글로벌 시장에서 활동",
+      "keywords": ["시세이도", "일본 화장품", "뷰티", "스킨케어"]
     },
     {
       "id": "kose",
-      "name": "Kosé",
+      "name": "코세",
       "nameLocal": "コーセー",
       "region": "japan",
       "ticker": "4922.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.kose.co.jp",
-      "description": "Major Japanese cosmetics company known for innovative products",
-      "keywords": ["kose", "japanese cosmetics", "beauty"]
+      "description": "혁신적인 제품으로 유명한 주요 일본 화장품 회사",
+      "keywords": ["코세", "일본 화장품", "뷰티"]
     },
     {
       "id": "pola",
-      "name": "Pola Orbis Holdings",
+      "name": "폴라 오르비스 홀딩스",
       "nameLocal": "ポーラ・オルビスホールディングス",
       "region": "japan",
       "ticker": "4927.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.po-holdings.co.jp",
-      "description": "Japanese beauty and wellness company with premium brands",
-      "keywords": ["pola", "orbis", "japanese cosmetics", "beauty"]
+      "description": "프리미엄 브랜드를 보유한 일본 뷰티 및 웰니스 회사",
+      "keywords": ["폴라", "오르비스", "일본 화장품", "뷰티"]
     },
     {
       "id": "kao",
-      "name": "Kao Corporation",
+      "name": "카오",
       "nameLocal": "花王",
       "region": "japan",
       "ticker": "4452.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.kao.com",
-      "description": "Major Japanese consumer goods and cosmetics corporation",
-      "keywords": ["kao", "japanese cosmetics", "consumer goods", "beauty", "skincare"]
+      "description": "주요 일본 생활용품 및 화장품 대기업",
+      "keywords": ["카오", "일본 화장품", "생활용품", "뷰티", "스킨케어"]
     },
     {
       "id": "fancl",
-      "name": "FANCL",
+      "name": "판클",
       "nameLocal": "ファンケル",
       "region": "japan",
       "ticker": "4921.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.fancl.jp",
-      "description": "Additive-free cosmetics and health food company",
-      "keywords": ["fancl", "additive free", "japanese cosmetics", "skincare", "supplements"]
+      "description": "무첨가 화장품 및 건강식품 회사",
+      "keywords": ["판클", "무첨가", "일본 화장품", "스킨케어", "건강보조식품"]
     },
     {
       "id": "dhc",
@@ -186,148 +66,73 @@
       "nameLocal": "DHC",
       "region": "japan",
       "ticker": "N/A",
-      "exchange": "Private",
+      "exchange": "비상장",
       "currency": "JPY",
       "website": "https://www.dhc.co.jp",
-      "description": "Leading mail-order cosmetics and supplements company",
-      "keywords": ["dhc", "japanese cosmetics", "mail order", "skincare", "supplements"]
+      "description": "선도적인 통신판매 화장품 및 건강보조식품 회사",
+      "keywords": ["DHC", "일본 화장품", "통신판매", "스킨케어", "건강보조식품"]
     },
     {
       "id": "kanebo",
-      "name": "Kanebo Cosmetics",
+      "name": "칸에보",
       "nameLocal": "カネボウ化粧品",
       "region": "japan",
       "ticker": "N/A",
-      "exchange": "Kao Group",
+      "exchange": "카오 그룹",
       "currency": "JPY",
       "website": "https://www.kanebo-cosmetics.jp",
-      "description": "Premium cosmetics brand under Kao Corporation",
-      "keywords": ["kanebo", "japanese cosmetics", "premium beauty", "kao group"]
+      "description": "카오 그룹의 프리미엄 화장품 브랜드",
+      "keywords": ["칸에보", "일본 화장품", "프리미엄 뷰티", "카오 그룹"]
     },
     {
       "id": "mandom",
-      "name": "Mandom",
+      "name": "맨담",
       "nameLocal": "マンダム",
       "region": "japan",
       "ticker": "4917.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.mandom.co.jp",
-      "description": "Men's grooming and cosmetics specialist",
-      "keywords": ["mandom", "mens grooming", "japanese cosmetics", "gatsby"]
+      "description": "남성 그루밍 및 화장품 전문 회사",
+      "keywords": ["맨담", "남성 그루밍", "일본 화장품", "개츠비"]
     },
     {
       "id": "noevir",
-      "name": "Noevir Holdings",
+      "name": "노에비어 홀딩스",
       "nameLocal": "ノエビアホールディングス",
       "region": "japan",
       "ticker": "4928.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.noevirholdings.co.jp",
-      "description": "High-end cosmetics and pharmaceutical company",
-      "keywords": ["noevir", "luxury cosmetics", "japanese cosmetics", "skincare"]
+      "description": "고급 화장품 및 제약 회사",
+      "keywords": ["노에비어", "럭셔리 화장품", "일본 화장품", "스킨케어"]
     },
     {
       "id": "milbon",
-      "name": "Milbon",
+      "name": "밀본",
       "nameLocal": "ミルボン",
       "region": "japan",
       "ticker": "4919.T",
-      "exchange": "TSE",
+      "exchange": "도쿄증권거래소",
       "currency": "JPY",
       "website": "https://www.milbon.com",
-      "description": "Professional hair care products manufacturer",
-      "keywords": ["milbon", "hair care", "professional", "japanese cosmetics", "salon"]
-    },
-    {
-      "id": "jahwa",
-      "name": "Shanghai Jahwa",
-      "nameLocal": "上海家化",
-      "region": "china",
-      "ticker": "600315.SS",
-      "exchange": "SSE",
-      "currency": "CNY",
-      "website": "https://www.jahwa.com.cn",
-      "description": "One of China's oldest and largest cosmetics companies",
-      "keywords": ["shanghai jahwa", "chinese cosmetics", "herborist"]
-    },
-    {
-      "id": "proya",
-      "name": "Proya Cosmetics",
-      "nameLocal": "珀莱雅",
-      "region": "china",
-      "ticker": "603605.SS",
-      "exchange": "SSE",
-      "currency": "CNY",
-      "website": "https://www.proya.com",
-      "description": "Leading Chinese cosmetics brand focusing on skincare",
-      "keywords": ["proya", "chinese cosmetics", "skincare china"]
-    },
-    {
-      "id": "loreal",
-      "name": "L'Oréal",
-      "nameLocal": "L'Oréal",
-      "region": "europe",
-      "ticker": "OR.PA",
-      "exchange": "Euronext Paris",
-      "currency": "EUR",
-      "website": "https://www.loreal.com",
-      "description": "World's largest cosmetics company with diverse brand portfolio",
-      "keywords": ["loreal", "cosmetics", "beauty", "skincare", "makeup"]
-    },
-    {
-      "id": "estee",
-      "name": "Estée Lauder",
-      "nameLocal": "Estée Lauder",
-      "region": "europe",
-      "ticker": "EL",
-      "exchange": "NYSE",
-      "currency": "USD",
-      "website": "https://www.elcompanies.com",
-      "description": "Premium American cosmetics company with luxury brands",
-      "keywords": ["estee lauder", "cosmetics", "luxury beauty", "skincare"]
-    },
-    {
-      "id": "unilever",
-      "name": "Unilever",
-      "nameLocal": "Unilever",
-      "region": "europe",
-      "ticker": "UL",
-      "exchange": "NYSE",
-      "currency": "USD",
-      "website": "https://www.unilever.com",
-      "description": "Global consumer goods company with major personal care brands",
-      "keywords": ["unilever", "personal care", "dove", "vaseline", "beauty"]
+      "description": "전문 헤어케어 제품 제조업체",
+      "keywords": ["밀본", "헤어케어", "프로페셔널", "일본 화장품", "살롱"]
     }
   ],
   "regions": {
-    "korea": {
-      "name": "Korea",
-      "nameLocal": "한국",
-      "color": "#E91E63"
-    },
     "japan": {
-      "name": "Japan",
+      "name": "일본",
       "nameLocal": "日本",
       "color": "#673AB7"
-    },
-    "china": {
-      "name": "China",
-      "nameLocal": "中国",
-      "color": "#FF9800"
-    },
-    "europe": {
-      "name": "Europe",
-      "nameLocal": "Europe",
-      "color": "#2196F3"
     }
   },
   "newsCategories": [
-    { "id": "product", "name": "New Products", "nameLocal": "신제품 출시" },
-    { "id": "financial", "name": "Financial Results", "nameLocal": "경영 실적" },
+    { "id": "product", "name": "신제품", "nameLocal": "신제품" },
+    { "id": "financial", "name": "재무실적", "nameLocal": "재무실적" },
     { "id": "ma", "name": "M&A", "nameLocal": "M&A" },
-    { "id": "rd", "name": "R&D", "nameLocal": "연구개발" },
+    { "id": "rd", "name": "연구개발", "nameLocal": "연구개발" },
     { "id": "esg", "name": "ESG", "nameLocal": "ESG" }
   ]
 }

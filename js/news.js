@@ -1,5 +1,5 @@
 // ===========================
-// News Module
+// 뉴스 모듈
 // ===========================
 
 import {
@@ -15,56 +15,45 @@ import {
 
 let companiesData = null;
 let allNews = [];
-let currentRegion = 'all';
 let currentCompany = 'all';
 let currentCategory = 'all';
 
-// Cache TTL: 1 hour
+// 캐시 TTL: 1시간
 const CACHE_TTL = 60;
 
 // ===========================
-// Initialization
+// 초기화
 // ===========================
 export function initNews(data) {
     companiesData = data;
 
-    // Populate company filter
+    // 회사 필터 채우기
     populateCompanyFilter();
 
-    // Add event listeners
+    // 이벤트 리스너 추가
     setupEventListeners();
 
-    // Load news
+    // 뉴스 로드
     loadNews();
 }
 
 // ===========================
-// Event Listeners
+// 이벤트 리스너
 // ===========================
 function setupEventListeners() {
-    // Region tabs
-    document.querySelectorAll('.region-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            currentRegion = e.target.getAttribute('data-region');
-            filterNews();
-        });
-    });
-
-    // Company filter
+    // 회사 필터
     document.getElementById('companyFilter').addEventListener('change', (e) => {
         currentCompany = e.target.value;
         filterNews();
     });
 
-    // Category filter
+    // 카테고리 필터
     document.getElementById('categoryFilter').addEventListener('change', (e) => {
         currentCategory = e.target.value;
         filterNews();
     });
 
-    // Refresh button
+    // 새로고침 버튼
     document.getElementById('refreshNews').addEventListener('click', () => {
         localStorage.removeItem('news_cache');
         loadNews();
@@ -72,27 +61,27 @@ function setupEventListeners() {
 }
 
 // ===========================
-// Populate Company Filter
+// 회사 필터 채우기
 // ===========================
 function populateCompanyFilter() {
     const select = document.getElementById('companyFilter');
     companiesData.companies.forEach(company => {
         const option = document.createElement('option');
         option.value = company.id;
-        option.textContent = `${company.name} (${company.region.toUpperCase()})`;
+        option.textContent = company.name;
         select.appendChild(option);
     });
 }
 
 // ===========================
-// Load News
+// 뉴스 로드
 // ===========================
 async function loadNews() {
     showLoading('newsLoading');
     hideError('newsError');
 
     try {
-        // Check cache first
+        // 먼저 캐시 확인
         const cachedNews = getCacheWithExpiry('news_cache');
         if (cachedNews) {
             allNews = cachedNews;
@@ -101,19 +90,19 @@ async function loadNews() {
             return;
         }
 
-        // Fetch news from API
+        // API에서 뉴스 가져오기
         const news = await fetchNewsFromAPI();
         allNews = news;
 
-        // Cache the results
+        // 결과 캐시
         setCacheWithExpiry('news_cache', news, CACHE_TTL);
 
         displayNews(news);
     } catch (error) {
-        console.error('Error loading news:', error);
-        showError('newsError', 'Failed to load news. Please try again later.');
+        console.error('뉴스 로딩 오류:', error);
+        showError('newsError', '뉴스를 불러오는데 실패했습니다. 나중에 다시 시도해주세요.');
 
-        // Load sample news as fallback
+        // 대체 샘플 뉴스 로드
         allNews = getSampleNews();
         displayNews(allNews);
     } finally {
@@ -122,13 +111,13 @@ async function loadNews() {
 }
 
 // ===========================
-// Fetch News from API
+// API에서 뉴스 가져오기
 // ===========================
 async function fetchNewsFromAPI() {
-    // Note: In production, you would use NewsAPI with a real API key
-    // For demo purposes, we'll use sample data
+    // 참고: 프로덕션에서는 실제 API 키와 함께 NewsAPI를 사용합니다
+    // 데모 목적으로 샘플 데이터를 사용합니다
     //
-    // Example with NewsAPI:
+    // NewsAPI 사용 예시:
     // const apiKey = 'YOUR_NEWSAPI_KEY';
     // const companies = companiesData.companies.map(c => c.keywords.join(' OR ')).join(' OR ');
     // const url = `https://newsapi.org/v2/everything?q=(${companies}) AND cosmetics&sortBy=publishedAt&apiKey=${apiKey}`;
@@ -136,299 +125,162 @@ async function fetchNewsFromAPI() {
     // const data = await response.json();
     // return data.articles.map(article => parseNewsArticle(article));
 
-    // For now, return sample data
+    // 현재는 샘플 데이터 반환
     return getSampleNews();
 }
 
 // ===========================
-// Get Sample News (Fallback)
+// 샘플 뉴스 가져오기 (대체용)
 // ===========================
 function getSampleNews() {
     return [
         {
             id: '1',
-            title: 'Amorepacific Launches AI-Powered Skin Analysis Platform',
-            description: 'Leading Korean beauty company unveils new artificial intelligence technology for personalized skincare recommendations.',
+            title: '시세이도, AI 기반 피부 분석 플랫폼 출시',
+            description: '일본 최대 화장품 기업이 개인 맞춤형 스킨케어 추천을 위한 새로운 인공지능 기술을 공개했습니다.',
             source: 'Beauty Innovation Today',
-            url: '#',
+            url: 'https://www.shiseido.com/jp/news/',
             publishedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-            company: 'amorepacific',
-            region: 'korea',
+            company: 'shiseido',
+            region: 'japan',
             category: 'rd'
         },
         {
             id: '2',
-            title: 'Shiseido Reports Strong Q4 Financial Results',
-            description: 'Japanese cosmetics giant exceeds expectations with 15% revenue growth driven by Asia-Pacific markets.',
+            title: '코세, 4분기 실적 호조 발표',
+            description: '일본 화장품 대기업이 아시아태평양 시장 주도로 15% 매출 성장을 기록하며 기대치를 초과했습니다.',
             source: 'Financial Beauty News',
-            url: '#',
+            url: 'https://www.kose.co.jp/company/en/ir/',
             publishedAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
-            company: 'shiseido',
+            company: 'kose',
             region: 'japan',
             category: 'financial'
         },
         {
             id: '3',
-            title: "L'Oréal Acquires Sustainable Beauty Startup",
-            description: 'Global beauty leader continues expansion in eco-friendly cosmetics with latest acquisition.',
-            source: 'Global Cosmetics Review',
-            url: '#',
-            publishedAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
-            company: 'loreal',
-            region: 'europe',
-            category: 'ma'
-        },
-        {
-            id: '4',
-            title: 'LG H&H Unveils New Luxury Skincare Line',
-            description: 'Korean household giant enters premium beauty segment with science-backed formulations.',
-            source: 'K-Beauty Insider',
-            url: '#',
-            publishedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'lghh',
-            region: 'korea',
-            category: 'product'
-        },
-        {
-            id: '5',
-            title: 'Estée Lauder Commits to Carbon Neutrality by 2030',
-            description: 'Luxury beauty company announces ambitious sustainability goals and green packaging initiatives.',
-            source: 'Sustainability in Beauty',
-            url: '#',
-            publishedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'estee',
-            region: 'europe',
-            category: 'esg'
-        },
-        {
-            id: '6',
-            title: 'Proya Cosmetics Expands International Presence',
-            description: 'Chinese beauty brand announces entry into Southeast Asian markets with localized products.',
-            source: 'Asia Beauty Market',
-            url: '#',
-            publishedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'proya',
-            region: 'china',
-            category: 'financial'
-        },
-        {
-            id: '7',
-            title: 'Cosmax Partners with Global Brands for Sustainable Packaging',
-            description: 'Leading ODM manufacturer develops innovative eco-friendly packaging solutions.',
-            source: 'Packaging Innovation News',
-            url: '#',
-            publishedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'cosmax',
-            region: 'korea',
-            category: 'rd'
-        },
-        {
-            id: '8',
-            title: 'Kosé Introduces Biotechnology-Based Anti-Aging Range',
-            description: 'Japanese company leverages cutting-edge research for next-generation skincare products.',
-            source: 'Beauty Science Journal',
-            url: '#',
-            publishedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'kose',
-            region: 'japan',
-            category: 'product'
-        },
-        {
-            id: '9',
-            title: 'Shanghai Jahwa Celebrates Record Sales in Domestic Market',
-            description: 'Historic Chinese brand sees surge in popularity among younger consumers.',
-            source: 'China Beauty Report',
-            url: '#',
-            publishedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'jahwa',
-            region: 'china',
-            category: 'financial'
-        },
-        {
-            id: '10',
-            title: 'Pola Orbis Invests in Digital Beauty Consultation Platform',
-            description: 'Japanese beauty conglomerate embraces virtual try-on and personalized recommendations.',
+            title: '폴라 오르비스, 디지털 뷰티 상담 플랫폼에 투자',
+            description: '일본 뷰티 대기업이 가상 체험과 개인 맞춤형 추천 서비스를 도입했습니다.',
             source: 'Digital Beauty Today',
-            url: '#',
+            url: 'https://www.po-holdings.co.jp/en/',
             publishedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'pola',
             region: 'japan',
             category: 'rd'
         },
         {
-            id: '11',
-            title: 'Unilever Launches Inclusive Beauty Initiative',
-            description: 'Consumer goods giant expands shade ranges and launches campaigns for diverse beauty standards.',
-            source: 'Beauty Inclusivity Now',
-            url: '#',
-            publishedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'unilever',
-            region: 'europe',
-            category: 'esg'
-        },
-        {
-            id: '12',
-            title: 'Amorepacific Opens New R&D Center for Green Chemistry',
-            description: 'Korean beauty leader invests $100M in sustainable ingredient research facility.',
-            source: 'Green Beauty Innovation',
-            url: '#',
-            publishedAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'amorepacific',
-            region: 'korea',
-            category: 'rd'
-        },
-        {
-            id: '13',
-            title: 'MISSHA by Able C&C Launches Vegan Cushion Line',
-            description: 'Korean beauty brand unveils new vegan-certified cushion foundation with improved coverage.',
-            source: 'K-Beauty Daily',
-            url: '#',
-            publishedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'ablecnc',
-            region: 'korea',
-            category: 'product'
-        },
-        {
-            id: '14',
-            title: 'Kolmar Korea Signs Major Contract with European Brand',
-            description: 'Leading ODM manufacturer secures multi-million dollar deal for innovative formulation.',
-            source: 'Manufacturing News Asia',
-            url: '#',
-            publishedAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'kolmar',
-            region: 'korea',
-            category: 'ma'
-        },
-        {
-            id: '15',
-            title: 'Tony Moly Opens Flagship Store in New York',
-            description: 'Popular K-beauty brand expands US presence with innovative experiential retail concept.',
-            source: 'Retail Beauty Report',
-            url: '#',
-            publishedAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'tonymoly',
-            region: 'korea',
-            category: 'financial'
-        },
-        {
-            id: '16',
-            title: 'Nature Republic Commits to 100% Recycled Packaging',
-            description: 'Natural cosmetics brand announces ambitious environmental initiative for all products by 2025.',
-            source: 'Green Beauty Times',
-            url: '#',
-            publishedAt: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'naturerepublic',
-            region: 'korea',
-            category: 'esg'
-        },
-        {
-            id: '17',
-            title: 'CLIO Launches AI-Powered Lipstick Matching App',
-            description: 'Korean color cosmetics leader introduces innovative virtual shade finder technology.',
-            source: 'Beauty Tech Innovation',
-            url: '#',
-            publishedAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
-            company: 'clio',
-            region: 'korea',
-            category: 'rd'
-        },
-        {
-            id: '18',
-            title: 'Kao Corporation Reports Record Skincare Sales in Asia',
-            description: 'Japanese consumer goods giant sees 20% growth in premium skincare segment.',
+            id: '4',
+            title: '카오, 아시아 스킨케어 매출 기록 경신',
+            description: '일본 생활용품 대기업이 프리미엄 스킨케어 부문에서 20% 성장을 기록했습니다.',
             source: 'Asian Business News',
-            url: '#',
+            url: 'https://www.kao.com/jp/corporate/news/',
             publishedAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'kao',
             region: 'japan',
             category: 'financial'
         },
         {
-            id: '19',
-            title: 'FANCL Introduces Advanced Supplement-Infused Skincare',
-            description: 'Additive-free cosmetics pioneer combines oral and topical beauty solutions.',
+            id: '5',
+            title: '판클, 고급 건강보조식품 함유 스킨케어 출시',
+            description: '무첨가 화장품 선구자가 경구 및 국소 뷰티 솔루션을 결합했습니다.',
             source: 'Health & Beauty Journal',
-            url: '#',
+            url: 'https://www.fancl.jp/news/',
             publishedAt: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'fancl',
             region: 'japan',
             category: 'product'
         },
         {
-            id: '20',
-            title: 'DHC Expands Direct-to-Consumer Platform Globally',
-            description: 'Mail-order beauty leader enhances digital commerce capabilities across markets.',
+            id: '6',
+            title: 'DHC, 전 세계적으로 직판 플랫폼 확장',
+            description: '통신판매 뷰티 선두 기업이 시장 전반에 걸쳐 디지털 커머스 역량을 강화합니다.',
             source: 'E-Commerce Beauty News',
-            url: '#',
+            url: 'https://www.dhc.co.jp/company/news/',
             publishedAt: new Date(Date.now() - 17 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'dhc',
             region: 'japan',
             category: 'financial'
         },
         {
-            id: '21',
-            title: 'Kanebo Unveils Luxury Anti-Aging Collection',
-            description: 'Premium Japanese brand launches high-performance skincare with advanced peptide technology.',
+            id: '7',
+            title: '칸에보, 럭셔리 안티에이징 컬렉션 공개',
+            description: '프리미엄 일본 브랜드가 고급 펩타이드 기술을 적용한 고성능 스킨케어를 출시했습니다.',
             source: 'Luxury Beauty Review',
-            url: '#',
+            url: 'https://www.kanebo-cosmetics.jp/press/',
             publishedAt: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'kanebo',
             region: 'japan',
             category: 'product'
         },
         {
-            id: '22',
-            title: "Mandom's Gatsby Brand Dominates Asian Men's Grooming",
-            description: 'Leading men\'s cosmetics company reports strong growth across Southeast Asian markets.',
+            id: '8',
+            title: '맨담의 개츠비 브랜드, 아시아 남성 그루밍 시장 석권',
+            description: '남성 화장품 선두 기업이 동남아시아 시장 전반에서 강력한 성장세를 보고했습니다.',
             source: 'Men\'s Beauty Trends',
-            url: '#',
+            url: 'https://www.mandom.co.jp/en/news/',
             publishedAt: new Date(Date.now() - 19 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'mandom',
             region: 'japan',
             category: 'financial'
         },
         {
-            id: '23',
-            title: 'Noevir Holdings Invests in Biotechnology Research',
-            description: 'Luxury cosmetics company allocates ¥5 billion for next-generation ingredient development.',
+            id: '9',
+            title: '노에비어 홀딩스, 생명공학 연구에 투자',
+            description: '럭셔리 화장품 기업이 차세대 성분 개발을 위해 50억 엔을 배정했습니다.',
             source: 'Biotech Beauty News',
-            url: '#',
+            url: 'https://www.noevirholdings.co.jp/en/news/',
             publishedAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'noevir',
             region: 'japan',
             category: 'rd'
         },
         {
-            id: '24',
-            title: 'Milbon Professional Hair Care Expands to European Salons',
-            description: 'Japanese hair care specialist announces partnership with leading European salon networks.',
+            id: '10',
+            title: '밀본 프로페셔널 헤어케어, 유럽 살롱으로 확장',
+            description: '일본 헤어케어 전문 기업이 유럽 주요 살롱 네트워크와 파트너십을 발표했습니다.',
             source: 'Professional Beauty Magazine',
-            url: '#',
+            url: 'https://www.milbon.com/ja/news/',
             publishedAt: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'milbon',
             region: 'japan',
             category: 'ma'
+        },
+        {
+            id: '11',
+            title: '시세이도, 2030년까지 탄소중립 약속',
+            description: '글로벌 뷰티 리더가 야심찬 지속가능성 목표와 친환경 포장 이니셔티브를 발표했습니다.',
+            source: 'Sustainability in Beauty',
+            url: 'https://www.shiseido.com/jp/sustainability/',
+            publishedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'shiseido',
+            region: 'japan',
+            category: 'esg'
+        },
+        {
+            id: '12',
+            title: '카오, 친환경 혁신 연구소 개설',
+            description: '일본 대기업이 지속가능한 성분 연구 시설에 1억 달러를 투자했습니다.',
+            source: 'Green Beauty Innovation',
+            url: 'https://www.kao.com/jp/sustainability/',
+            publishedAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString(),
+            company: 'kao',
+            region: 'japan',
+            category: 'rd'
         }
     ];
 }
 
 // ===========================
-// Filter News
+// 뉴스 필터링
 // ===========================
 function filterNews() {
     let filtered = [...allNews];
 
-    // Filter by region
-    if (currentRegion !== 'all') {
-        filtered = filtered.filter(news => news.region === currentRegion);
-    }
-
-    // Filter by company
+    // 회사별 필터
     if (currentCompany !== 'all') {
         filtered = filtered.filter(news => news.company === currentCompany);
     }
 
-    // Filter by category
+    // 카테고리별 필터
     if (currentCategory !== 'all') {
         filtered = filtered.filter(news => news.category === currentCategory);
     }
@@ -437,30 +289,32 @@ function filterNews() {
 }
 
 // ===========================
-// Display News
+// 뉴스 표시
 // ===========================
 function displayNews(news) {
     const grid = document.getElementById('newsGrid');
 
     if (news.length === 0) {
-        grid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; padding: 3rem;">No news found matching your filters.</div>';
+        grid.innerHTML = '<div class="text-center" style="grid-column: 1/-1; padding: 3rem;">필터와 일치하는 뉴스를 찾을 수 없습니다.</div>';
         return;
     }
 
     grid.innerHTML = news.map(article => createNewsCard(article)).join('');
 
-    // Add click events to news cards
+    // 뉴스 카드에 클릭 이벤트 추가
     grid.querySelectorAll('.news-card').forEach((card, index) => {
         card.addEventListener('click', () => {
             if (news[index].url && news[index].url !== '#') {
-                window.open(news[index].url, '_blank');
+                window.open(news[index].url, '_blank', 'noopener,noreferrer');
             }
         });
+        // 마우스 커서를 포인터로 변경
+        card.style.cursor = 'pointer';
     });
 }
 
 // ===========================
-// Create News Card
+// 뉴스 카드 생성
 // ===========================
 function createNewsCard(article) {
     const company = companiesData.companies.find(c => c.id === article.company);
@@ -475,7 +329,7 @@ function createNewsCard(article) {
             <h3 class="news-title">${article.title}</h3>
             <p class="news-description">${truncateText(article.description, 150)}</p>
             <div class="news-tags">
-                <span class="tag tag-${article.region}">${company?.name || article.company}</span>
+                <span class="tag tag-japan">${company?.name || article.company}</span>
                 ${getCategoryTag(article.category)}
             </div>
         </div>
@@ -483,14 +337,14 @@ function createNewsCard(article) {
 }
 
 // ===========================
-// Get Category Tag
+// 카테고리 태그 가져오기
 // ===========================
 function getCategoryTag(categoryId) {
     const categories = {
-        product: 'New Product',
-        financial: 'Financial',
+        product: '신제품',
+        financial: '재무실적',
         ma: 'M&A',
-        rd: 'R&D',
+        rd: '연구개발',
         esg: 'ESG'
     };
     return `<span class="tag" style="background: rgba(103, 58, 183, 0.1); color: var(--secondary);">${categories[categoryId] || categoryId}</span>`;

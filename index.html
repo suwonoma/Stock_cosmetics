@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Global Cosmetics Industry Dashboard - Track news, stock prices, and AI research for major cosmetics companies">
-    <title>Global Cosmetics Industry Dashboard</title>
+    <meta name="description" content="일본 화장품 산업 대시보드 - 주요 일본 화장품 기업의 뉴스, 주가, AI 연구 추적">
+    <title>일본 화장품 산업 대시보드</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -22,10 +22,10 @@
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-flask"></i>
-                    <h1>Global Cosmetics Dashboard</h1>
+                    <h1>일본 화장품 산업 대시보드</h1>
                 </div>
                 <div class="header-actions">
-                    <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">
+                    <button id="themeToggle" class="btn-icon" aria-label="테마 전환">
                         <i class="fas fa-moon"></i>
                     </button>
                 </div>
@@ -39,15 +39,15 @@
             <div class="tabs">
                 <button class="tab-btn active" data-tab="news">
                     <i class="fas fa-newspaper"></i>
-                    <span>Latest News</span>
+                    <span>최신 뉴스</span>
                 </button>
                 <button class="tab-btn" data-tab="stocks">
                     <i class="fas fa-chart-line"></i>
-                    <span>Stock Prices</span>
+                    <span>주가 차트</span>
                 </button>
                 <button class="tab-btn" data-tab="papers">
                     <i class="fas fa-graduation-cap"></i>
-                    <span>AI Research</span>
+                    <span>AI 연구</span>
                 </button>
             </div>
         </div>
@@ -59,99 +59,92 @@
             <!-- News Section -->
             <section id="newsSection" class="content-section active">
                 <div class="section-header">
-                    <h2>Latest Industry News</h2>
+                    <h2>최신 산업 뉴스</h2>
                     <div class="controls">
-                        <div class="region-tabs">
-                            <button class="region-btn active" data-region="all">All Regions</button>
-                            <button class="region-btn" data-region="korea">Korea</button>
-                            <button class="region-btn" data-region="japan">Japan</button>
-                            <button class="region-btn" data-region="china">China</button>
-                            <button class="region-btn" data-region="europe">Europe</button>
-                        </div>
                         <select id="companyFilter" class="select-dropdown">
-                            <option value="all">All Companies</option>
+                            <option value="all">전체 회사</option>
                         </select>
                         <select id="categoryFilter" class="select-dropdown">
-                            <option value="all">All Categories</option>
-                            <option value="product">New Products</option>
-                            <option value="financial">Financial Results</option>
+                            <option value="all">전체 카테고리</option>
+                            <option value="product">신제품</option>
+                            <option value="financial">재무실적</option>
                             <option value="ma">M&A</option>
-                            <option value="rd">R&D</option>
+                            <option value="rd">연구개발</option>
                             <option value="esg">ESG</option>
                         </select>
                         <button id="refreshNews" class="btn-primary">
-                            <i class="fas fa-sync-alt"></i> Refresh
+                            <i class="fas fa-sync-alt"></i> 새로고침
                         </button>
                     </div>
                 </div>
 
                 <div id="newsLoading" class="loading hidden">
                     <div class="spinner"></div>
-                    <p>Loading news...</p>
+                    <p>뉴스 로딩 중...</p>
                 </div>
 
                 <div id="newsError" class="error-message hidden"></div>
 
                 <div id="newsGrid" class="news-grid">
-                    <!-- News cards will be dynamically inserted here -->
+                    <!-- 뉴스 카드가 동적으로 삽입됩니다 -->
                 </div>
             </section>
 
             <!-- Stocks Section -->
             <section id="stocksSection" class="content-section">
                 <div class="section-header">
-                    <h2>Stock Price Charts</h2>
+                    <h2>주가 차트</h2>
                     <div class="controls">
                         <select id="stockCompany" class="select-dropdown">
-                            <option value="">Select Company</option>
+                            <option value="">회사 선택</option>
                         </select>
                         <div class="period-buttons">
-                            <button class="period-btn" data-period="1W">1W</button>
-                            <button class="period-btn" data-period="1M">1M</button>
-                            <button class="period-btn active" data-period="3M">3M</button>
-                            <button class="period-btn" data-period="6M">6M</button>
-                            <button class="period-btn" data-period="1Y">1Y</button>
-                            <button class="period-btn" data-period="YTD">YTD</button>
+                            <button class="period-btn" data-period="1W">1주</button>
+                            <button class="period-btn" data-period="1M">1개월</button>
+                            <button class="period-btn active" data-period="3M">3개월</button>
+                            <button class="period-btn" data-period="6M">6개월</button>
+                            <button class="period-btn" data-period="1Y">1년</button>
+                            <button class="period-btn" data-period="YTD">연초대비</button>
                         </div>
                         <label class="checkbox-label">
                             <input type="checkbox" id="compareMode">
-                            Compare Mode (max 4)
+                            비교 모드 (최대 4개)
                         </label>
                     </div>
                 </div>
 
                 <div id="stockInfo" class="stock-info hidden">
                     <div class="stock-card">
-                        <div class="stock-label">Current Price</div>
+                        <div class="stock-label">현재가</div>
                         <div id="currentPrice" class="stock-value">-</div>
                     </div>
                     <div class="stock-card">
-                        <div class="stock-label">Change</div>
+                        <div class="stock-label">변동</div>
                         <div id="priceChange" class="stock-value">-</div>
                     </div>
                     <div class="stock-card">
-                        <div class="stock-label">Volume</div>
+                        <div class="stock-label">거래량</div>
                         <div id="volume" class="stock-value">-</div>
                     </div>
                     <div class="stock-card">
-                        <div class="stock-label">52W High</div>
+                        <div class="stock-label">52주 최고</div>
                         <div id="high52w" class="stock-value">-</div>
                     </div>
                     <div class="stock-card">
-                        <div class="stock-label">52W Low</div>
+                        <div class="stock-label">52주 최저</div>
                         <div id="low52w" class="stock-value">-</div>
                     </div>
                 </div>
 
                 <div id="compareSelect" class="compare-select hidden">
-                    <p>Select up to 4 companies to compare:</p>
+                    <p>비교할 회사를 최대 4개까지 선택하세요:</p>
                     <div id="compareCheckboxes" class="compare-checkboxes"></div>
-                    <button id="loadCompare" class="btn-primary">Load Comparison</button>
+                    <button id="loadCompare" class="btn-primary">비교 차트 로드</button>
                 </div>
 
                 <div id="stockLoading" class="loading hidden">
                     <div class="spinner"></div>
-                    <p>Loading stock data...</p>
+                    <p>주가 데이터 로딩 중...</p>
                 </div>
 
                 <div id="stockError" class="error-message hidden"></div>
@@ -164,11 +157,11 @@
             <!-- Papers Section -->
             <section id="papersSection" class="content-section">
                 <div class="section-header">
-                    <h2>AI & Cosmetics Research Papers</h2>
+                    <h2>AI & 화장품 연구 논문</h2>
                     <div class="controls">
-                        <input type="text" id="paperSearch" class="search-input" placeholder="Search papers...">
+                        <input type="text" id="paperSearch" class="search-input" placeholder="논문 검색...">
                         <select id="yearFilter" class="select-dropdown">
-                            <option value="all">All Years</option>
+                            <option value="all">전체 연도</option>
                             <option value="2026">2026</option>
                             <option value="2025">2025</option>
                             <option value="2024">2024</option>
@@ -176,20 +169,20 @@
                             <option value="2022">2022</option>
                         </select>
                         <button id="refreshPapers" class="btn-primary">
-                            <i class="fas fa-sync-alt"></i> Refresh
+                            <i class="fas fa-sync-alt"></i> 새로고침
                         </button>
                     </div>
                 </div>
 
                 <div id="papersLoading" class="loading hidden">
                     <div class="spinner"></div>
-                    <p>Loading research papers...</p>
+                    <p>연구 논문 로딩 중...</p>
                 </div>
 
                 <div id="papersError" class="error-message hidden"></div>
 
                 <div id="papersGrid" class="papers-grid">
-                    <!-- Paper cards will be dynamically inserted here -->
+                    <!-- 논문 카드가 동적으로 삽입됩니다 -->
                 </div>
             </section>
         </div>
@@ -198,8 +191,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Global Cosmetics Dashboard. Data sources: NewsAPI, Alpha Vantage, arXiv</p>
-            <p class="disclaimer">This dashboard is for informational purposes only. Please verify all data independently.</p>
+            <p>&copy; 2026 일본 화장품 산업 대시보드. 데이터 출처: NewsAPI, Alpha Vantage, arXiv</p>
+            <p class="disclaimer">이 대시보드는 정보 제공 목적으로만 사용됩니다. 모든 데이터를 독립적으로 검증하시기 바랍니다.</p>
         </div>
     </footer>
 
