@@ -139,7 +139,7 @@ function getSampleNews() {
             title: '시세이도, AI 기반 피부 분석 플랫폼 출시',
             description: '일본 최대 화장품 기업이 개인 맞춤형 스킨케어 추천을 위한 새로운 인공지능 기술을 공개했습니다.',
             source: 'Beauty Innovation Today',
-            url: 'https://www.shiseido.com/jp/news/',
+            searchQuery: '시세이도 AI 피부분석 스킨케어',
             publishedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
             company: 'shiseido',
             region: 'japan',
@@ -150,7 +150,7 @@ function getSampleNews() {
             title: '코세, 4분기 실적 호조 발표',
             description: '일본 화장품 대기업이 아시아태평양 시장 주도로 15% 매출 성장을 기록하며 기대치를 초과했습니다.',
             source: 'Financial Beauty News',
-            url: 'https://www.kose.co.jp/company/en/ir/',
+            searchQuery: '코세 실적 매출 성장',
             publishedAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
             company: 'kose',
             region: 'japan',
@@ -161,7 +161,7 @@ function getSampleNews() {
             title: '폴라 오르비스, 디지털 뷰티 상담 플랫폼에 투자',
             description: '일본 뷰티 대기업이 가상 체험과 개인 맞춤형 추천 서비스를 도입했습니다.',
             source: 'Digital Beauty Today',
-            url: 'https://www.po-holdings.co.jp/en/',
+            searchQuery: '폴라오르비스 디지털 뷰티 가상체험',
             publishedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'pola',
             region: 'japan',
@@ -172,7 +172,7 @@ function getSampleNews() {
             title: '카오, 아시아 스킨케어 매출 기록 경신',
             description: '일본 생활용품 대기업이 프리미엄 스킨케어 부문에서 20% 성장을 기록했습니다.',
             source: 'Asian Business News',
-            url: 'https://www.kao.com/jp/corporate/news/',
+            searchQuery: '카오 스킨케어 매출 성장',
             publishedAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'kao',
             region: 'japan',
@@ -183,7 +183,7 @@ function getSampleNews() {
             title: '판클, 고급 건강보조식품 함유 스킨케어 출시',
             description: '무첨가 화장품 선구자가 경구 및 국소 뷰티 솔루션을 결합했습니다.',
             source: 'Health & Beauty Journal',
-            url: 'https://www.fancl.jp/news/',
+            searchQuery: '판클 건강보조식품 스킨케어',
             publishedAt: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'fancl',
             region: 'japan',
@@ -194,7 +194,7 @@ function getSampleNews() {
             title: 'DHC, 전 세계적으로 직판 플랫폼 확장',
             description: '통신판매 뷰티 선두 기업이 시장 전반에 걸쳐 디지털 커머스 역량을 강화합니다.',
             source: 'E-Commerce Beauty News',
-            url: 'https://www.dhc.co.jp/company/news/',
+            searchQuery: 'DHC 직판 플랫폼 확장',
             publishedAt: new Date(Date.now() - 17 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'dhc',
             region: 'japan',
@@ -205,7 +205,7 @@ function getSampleNews() {
             title: '칸에보, 럭셔리 안티에이징 컬렉션 공개',
             description: '프리미엄 일본 브랜드가 고급 펩타이드 기술을 적용한 고성능 스킨케어를 출시했습니다.',
             source: 'Luxury Beauty Review',
-            url: 'https://www.kanebo-cosmetics.jp/press/',
+            searchQuery: '칸에보 안티에이징 스킨케어',
             publishedAt: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'kanebo',
             region: 'japan',
@@ -216,7 +216,7 @@ function getSampleNews() {
             title: '맨담의 개츠비 브랜드, 아시아 남성 그루밍 시장 석권',
             description: '남성 화장품 선두 기업이 동남아시아 시장 전반에서 강력한 성장세를 보고했습니다.',
             source: 'Men\'s Beauty Trends',
-            url: 'https://www.mandom.co.jp/en/news/',
+            searchQuery: '맨담 개츠비 남성화장품',
             publishedAt: new Date(Date.now() - 19 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'mandom',
             region: 'japan',
@@ -227,7 +227,7 @@ function getSampleNews() {
             title: '노에비어 홀딩스, 생명공학 연구에 투자',
             description: '럭셔리 화장품 기업이 차세대 성분 개발을 위해 50억 엔을 배정했습니다.',
             source: 'Biotech Beauty News',
-            url: 'https://www.noevirholdings.co.jp/en/news/',
+            searchQuery: '노에비어 생명공학 연구 투자',
             publishedAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'noevir',
             region: 'japan',
@@ -238,7 +238,7 @@ function getSampleNews() {
             title: '밀본 프로페셔널 헤어케어, 유럽 살롱으로 확장',
             description: '일본 헤어케어 전문 기업이 유럽 주요 살롱 네트워크와 파트너십을 발표했습니다.',
             source: 'Professional Beauty Magazine',
-            url: 'https://www.milbon.com/ja/news/',
+            searchQuery: '밀본 헤어케어 유럽 확장',
             publishedAt: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'milbon',
             region: 'japan',
@@ -249,7 +249,7 @@ function getSampleNews() {
             title: '시세이도, 2030년까지 탄소중립 약속',
             description: '글로벌 뷰티 리더가 야심찬 지속가능성 목표와 친환경 포장 이니셔티브를 발표했습니다.',
             source: 'Sustainability in Beauty',
-            url: 'https://www.shiseido.com/jp/sustainability/',
+            searchQuery: '시세이도 탄소중립 지속가능성',
             publishedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'shiseido',
             region: 'japan',
@@ -260,7 +260,7 @@ function getSampleNews() {
             title: '카오, 친환경 혁신 연구소 개설',
             description: '일본 대기업이 지속가능한 성분 연구 시설에 1억 달러를 투자했습니다.',
             source: 'Green Beauty Innovation',
-            url: 'https://www.kao.com/jp/sustainability/',
+            searchQuery: '카오 친환경 연구소',
             publishedAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000).toISOString(),
             company: 'kao',
             region: 'japan',
@@ -304,9 +304,10 @@ function displayNews(news) {
     // 뉴스 카드에 클릭 이벤트 추가
     grid.querySelectorAll('.news-card').forEach((card, index) => {
         card.addEventListener('click', () => {
-            if (news[index].url && news[index].url !== '#') {
-                window.open(news[index].url, '_blank', 'noopener,noreferrer');
-            }
+            // Google News 검색 URL 생성
+            const searchQuery = news[index].searchQuery || news[index].title;
+            const googleNewsUrl = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}&tbm=nws`;
+            window.open(googleNewsUrl, '_blank', 'noopener,noreferrer');
         });
         // 마우스 커서를 포인터로 변경
         card.style.cursor = 'pointer';
